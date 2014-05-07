@@ -1,6 +1,6 @@
-#php-pds (PHP Project Directory Structure)
+#php-pds
 
-PHP项目目录规划
+PHP项目目录规划（PHP Project Directory Structure）
 
 ##技术路线
 
@@ -17,11 +17,11 @@ PHP项目目录规划
 
 * 如何学习HTML
 
-    请参考《Web标准实战》（http://book.douban.com/subject/3054707/）。
+    请参考[《Web标准实战》](http://book.douban.com/subject/3054707/)。
 
 * 如何写出100%标准的HTML
 
-    使用Firefox扩展HTML Validator即可（http://users.skynet.be/mgueury/mozilla/）。
+    使用Firefox扩展[HTML Validator](http://users.skynet.be/mgueury/mozilla/)即可。
 
 ##待解决的问题
 
