@@ -31,7 +31,7 @@ PHP项目目录规划（PHP Project Directory Structure）
 
 ##待解决的问题
 
-* PHP和页面混写，很乱啊，怎么解决？
+* PHP和HTML混写，很乱啊，怎么解决？
 
     且听下回分解。
 
