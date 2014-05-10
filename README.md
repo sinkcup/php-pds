@@ -54,3 +54,14 @@ PHP项目目录规划（PHP Project Directory Structure）
 * 多个文件里都连了数据库，如果密码变了，每个地方都要改，怎么办？
 
     且听下回分解。
+
+* 访问index.php是正常网页，访问index.html是错误的，如何禁止访问模板等文件？
+
+    且听下回分解。
+
+* 单引号能保存吗？会导致什么后果？
+
+    请按照截图进行实验。且听下回分解。
+
+![单引号实验保存1](http://com-163-sinkcup-img-agc.qiniudn.com/single_quote_mark.png)
+![单引号实验保存2](http://com-163-sinkcup-img-agc.qiniudn.com/sql_injection.png)

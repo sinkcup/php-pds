@@ -2,32 +2,34 @@
 <html lang="zh-Hans">
     <head>
         <meta charset="utf-8" />
-        <title>Welcome to php-pds!</title>
+        <title>ebook首页</title>
     </head>
     <body>
-        <h1>Welcome to php-pds!</h1>
+        <h1>ebook小说在线阅读</h1>
         <p>Hello！树先生。这是一个开源项目，探讨PHP项目目录规划。</p>
         <p>项目代码：<a href="https://github.com/sinkcup/php-pds" target="_blank">https://github.com/sinkcup/php-pds</a></p>
-        <h2>评论列表</h2>
+        <h2>文章列表</h2>
 <?php
-foreach($comments as $k=>$v) {
-    $id = $k + 1;
+foreach($articles as $v) {
     echo '<div>'
-            . '<a href="#comment_' . $id . '" id="comment_' . $id . '">' . $id . '楼</a>'
-            . '<p>昵称：' . $v['nickname'] . '</p>'
-            . '<p>评论：' . $v['content'] . '</p>'
+            . '<p><a href="./articles_get.php?id=' . $v['id'] . '">《' . $v['title'] . '》作者：' . $v['author'] . '</a></p>'
+            . '<p>内容：' . mb_substr($v['content'], 0, 100, 'utf-8') . '……</p>'
             . '</div>';
 }
 ?>
-        <form action="comments.php" method="post">
+        <form action="articles_add.php" method="post">
             <fieldset>
-                <legend>发表评论</legend>
+                <legend>写文章</legend>
                 <div>
-                    <label for="nickname">昵称：</label>
-                    <input type="text" name="nickname" id="nickname" />
+                    <label for="author">作者：</label>
+                    <input type="text" name="author" id="author" />
                 </div>
                 <div>
-                    <label for="content">评论：</label>
+                    <label for="author">标题：</label>
+                    <input type="text" name="title" id="title" />
+                </div>
+                <div>
+                    <label for="content">内容：</label>
                     <textarea name="content" id="content" cols="30" rows="5"></textarea>
                 </div>
                 <div>

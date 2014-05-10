@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <head>
+        <meta charset="utf-8" />
+        <title><?='《' . $article['title'] . '》作者：' . $article['author']?> - ebook</title>
+    </head>
+    <body>
+        <h1><?='《' . $article['title'] . '》作者：' . $article['author']?></h1>
+        <p><a href="./">返回</a>
+<?php
+echo '<p>' . $article['content'] . '</p>';
+?>
+    </body>
+</html>
