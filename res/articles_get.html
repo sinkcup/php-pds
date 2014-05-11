@@ -8,7 +8,7 @@
         <h1><?='《' . $article['title'] . '》作者：' . $article['author']?></h1>
         <p><a href="./">返回</a>
 <?php
-echo '<p>' . $article['content'] . '</p>';
+echo '<p>' . nl2br($article['content']) . '</p>';
 ?>
     </body>
 </html>

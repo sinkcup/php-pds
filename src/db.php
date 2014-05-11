@@ -11,17 +11,8 @@ CREATE TABLE `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 */
-$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=ebook;charset=utf8';
-$user = 'root';
-$password = '1';
-$db = new PDO($dsn, $user, $password);
+$conf = parse_ini_file(__DIR__ . '/../conf/db.ini');
+$dsn = 'mysql:host=' . $conf['host'] . ';port=' . $conf['port'] . ';dbname=' . $conf['dbname'] . ';charset=' . $conf['charset'];
+$db = new PDO($dsn, $conf['username'], $conf['password']);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$sql = 'SELECT `id`, `author`, `title`, `content` FROM `articles` LIMIT 10';
-var_dump($sql);
-
-$stmt = $db->query($sql);
-$stmt->setFetchMode(PDO::FETCH_ASSOC);
-$articles = $stmt->fetchAll();
-require __DIR__ . '/index.html';
 ?>

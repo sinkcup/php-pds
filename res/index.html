@@ -12,8 +12,11 @@
 <?php
 foreach($articles as $v) {
     echo '<div>'
-            . '<p><a href="./articles_get.php?id=' . $v['id'] . '">《' . $v['title'] . '》作者：' . $v['author'] . '</a></p>'
-            . '<p>内容：' . mb_substr($v['content'], 0, 100, 'utf-8') . '……</p>'
+            . '<p>《' . $v['title'] . '》作者：' . $v['author']
+            . '<a href="./articles_get.php?id=' . $v['id'] . '">网页阅读</a>
+                <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt">txt阅读</a>
+                </p>'
+            . '<p>' . mb_substr($v['content'], 0, 100, 'utf-8') . '……</p>'
             . '</div>';
 }
 ?>

@@ -23,7 +23,7 @@ PHP项目目录规划（PHP Project Directory Structure）
         <td></td>
         <td>表现与业务分离</td>
         <td></td>
-        <td>Content-Type</td>
+        <td>charset</td>
         <td>Unicode</td>
     </tr>
     <tr>
@@ -33,35 +33,45 @@ PHP项目目录规划（PHP Project Directory Structure）
         <td></td>
         <td></td>
     </tr>
+    <tr>
+        <td></td>
+        <td>目录规划</td>
+        <td>SQL注入攻击</td>
+        <td>Content-Type</td>
+        <td></td>
+    </tr>
 </table>
 
 ##已解决的问题
 
-* 如何用PHP操作MySQL数据库？
-
-    使用PDO即可。
-    
-* PDO、php_mysqli和php_mysql的区别是什么？
-
-    请自行了解。注意：php_mysql已废弃。
-
-* HTML页面开头的xml version，DOCTYPE html后面的网址记不住啊，可以不写吗？
-
-    可以不写。HTML5不需要写那些了。
-
-##待解决的问题
-
 * 多个文件里都连了数据库，如果密码变了，每个地方都要改，怎么办？
 
-    且听下回分解。
+    使用配置文件即可。配置文件用什么格式？还记得php.ini吗？PHP原生支持ini格式。当然还可以使用php array格式，请自行了解。
 
 * 访问index.php是正常网页，访问index.html是错误的，如何禁止访问模板等文件？
 
-    且听下回分解。
+    建立htdocs目录，里面只放允许访问的页面，http服务器指向htdocs中，这样别的文件自然都不可访问了。
 
 * 单引号能保存吗？会导致什么后果？
 
-    请按照截图进行实验。且听下回分解。
+    SQL的值使用单引号或者双引号包起来，所以值里面不能再出现引号。一旦出现，转义即可。PDO使用quote进行转义，请看htdocs/articles_add.php。如果不转义，会导致SQL注入漏洞，如果有人攻击，可以执行任何SQL，比如清空数据、获取用户资料等等。
 
-![单引号实验保存1](http://com-163-sinkcup-img-agc.qiniudn.com/single_quote_mark.png)
-![单引号实验保存2](http://com-163-sinkcup-img-agc.qiniudn.com/sql_injection.png)
+![单引号实验成功](http://com-163-sinkcup-img-agc.qiniudn.com/pdo_quote.png)
+
+##待解决的问题
+
+* 文章不存在时显示的“查无此文”是html网页，txt模式时应该显示txt啊，如何实现呢？
+
+    按照截图先自行实验，且听下回分解。
+
+* 如何弹出下载？
+
+    且听下回分解。
+
+* 在内容中输入html代码会出现什么情况？
+
+    按照截图先自行实验（发表，然后进入阅读），且听下回分解。
+
+![txt报错实验](http://com-163-sinkcup-img-agc.qiniudn.com/need_txt_error.png)
+
+![XSS实验](http://com-163-sinkcup-img-agc.qiniudn.com/xss.png)
