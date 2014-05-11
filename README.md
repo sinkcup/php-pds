@@ -54,7 +54,7 @@ PHP项目目录规划（PHP Project Directory Structure）
 
 * 单引号能保存吗？会导致什么后果？
 
-    SQL的值使用单引号或者双引号包起来，所以值里面不能再出现引号。一旦出现，转义即可。PDO使用quote进行转义，请看htdocs/articles_add.php。如果不转义，会导致SQL注入漏洞，如果有人攻击，可以执行任何SQL，比如清空数据、获取用户资料等等。
+    SQL的值使用单引号或者双引号包起来，所以值里面的引号需要转义。PDO使用quote进行转义，请看htdocs/articles_add.php。如果不转义，会导致SQL注入漏洞，如果有人攻击，可以执行任何SQL，比如清空数据、获取用户资料等等。
 
 ![单引号实验成功](http://com-163-sinkcup-img-agc.qiniudn.com/pdo_quote.png)
 
