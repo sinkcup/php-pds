@@ -2,13 +2,13 @@
 <html lang="zh-Hans">
     <head>
         <meta charset="utf-8" />
-        <title><?='《' . $article['title'] . '》作者：' . $article['author']?> - ebook</title>
+        <title><?='《' . htmlspecialchars($d['article']['title']) . '》作者：' . htmlspecialchars($d['article']['author'])?> - ebook</title>
     </head>
     <body>
-        <h1><?='《' . $article['title'] . '》作者：' . $article['author']?></h1>
-        <p><a href="./">返回</a>
+        <h1><?='《' . htmlspecialchars($d['article']['title']) . '》作者：' . ($d['article']['author'])?></h1>
+        <p><a href="./">返回</a></p>
 <?php
-echo '<p>' . nl2br($article['content']) . '</p>';
+echo '<p>' . nl2br(htmlspecialchars($d['article']['content'])) . '</p>';
 ?>
     </body>
 </html>

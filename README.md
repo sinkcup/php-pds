@@ -40,38 +40,49 @@ PHP项目目录规划（PHP Project Directory Structure）
         <td>Content-Type</td>
         <td></td>
     </tr>
+    <tr>
+        <td>XSS攻击</td>
+        <td>面向过程</td>
+        <td>别处理HTML</td>
+        <td>Content-Disposition</td>
+        <td></td>
+    </tr>
 </table>
 
 ##已解决的问题
 
-* 多个文件里都连了数据库，如果密码变了，每个地方都要改，怎么办？
-
-    使用配置文件即可。配置文件用什么格式？还记得php.ini吗？PHP原生支持ini格式。当然还可以使用php array格式，请自行了解。
-
-* 访问index.php是正常网页，访问index.html是错误的，如何禁止访问模板等文件？
-
-    建立htdocs目录，里面只放允许访问的页面，http服务器指向htdocs中，这样别的文件自然都不可访问了。
-
-* 单引号能保存吗？会导致什么后果？
-
-    SQL的值使用单引号或者双引号包起来，所以值里面的引号需要转义。PDO使用quote进行转义，请看htdocs/articles_add.php。如果不转义，会导致SQL注入漏洞，如果有人攻击，可以执行任何SQL，比如清空数据、获取用户资料等等。
-
-![单引号实验成功](http://com-163-sinkcup-img-agc.qiniudn.com/pdo_quote.png)
-
-##待解决的问题
-
 * 文章不存在时显示的“查无此文”是html网页，txt模式时应该显示txt啊，如何实现呢？
 
-    按照截图先自行实验，且听下回分解。
+    面向过程编程（POP），使用output函数统一输出即可。
 
 * 如何弹出下载？
 
+    使用Content-Disposition即可。
+
+* 在内容中输入HTML代码会出现什么情况？
+
+    “网页阅读”弹出了js警告，跳转到了别的网站，这就是“XSS攻击”。那说明这些代码在HTML网页中显示中是危险的，需要用htmlspecialchars转义后再显示。而“txt阅读”没问题，在数据库中也无需处理。切记：数据库别处理HTML，那是网页的事。
+
+![XSS实验txt正常](http://com-163-sinkcup-img-agc.qiniudn.com/xss_txt.png)
+
+![XSS实验HTML危险](http://com-163-sinkcup-img-agc.qiniudn.com/xss_html.png)
+
+##待解决的问题
+
+* 复制链接，改成一个不存在的id，比如asdf，提示文章不存在，但仍然弹出了下载，怎么办？
+
     且听下回分解。
 
-* 在内容中输入html代码会出现什么情况？
+* 下载的txt，在Windows系统里用记事本打开怎么乱码了？而用高级编辑器（Notepad++、EmEditor）打开没问题，手机也没问题。
 
-    按照截图先自行实验（发表，然后进入阅读），且听下回分解。
+    且听下回分解。
 
-![txt报错实验](http://com-163-sinkcup-img-agc.qiniudn.com/need_txt_error.png)
+* txt模式也应该直接展示$output['data']，不该出现$output['data']['txt']这种冗余的数据。1种数据，多种展示，这样才规范，怎么实现？
 
-![XSS实验](http://com-163-sinkcup-img-agc.qiniudn.com/xss.png)
+    且听下回分解。
+
+* 下载的txt都是1.txt、2.txt，不友好，能用小说标题作为文件名吗？
+
+    先自行试验冒号、引号和点号能不能作为文件名，且听下下回分解。
+
+![txt实验：不存在](http://com-163-sinkcup-img-agc.qiniudn.com/txt_not_exist.png)

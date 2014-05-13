@@ -10,13 +10,14 @@
         <p>项目代码：<a href="https://github.com/sinkcup/php-pds" target="_blank">https://github.com/sinkcup/php-pds</a></p>
         <h2>文章列表</h2>
 <?php
-foreach($articles as $v) {
+foreach($d['articles'] as $v) {
     echo '<div>'
-            . '<p>《' . $v['title'] . '》作者：' . $v['author']
+            . '<p>《' . htmlspecialchars($v['title']) . '》作者：' . htmlspecialchars($v['author'])
             . '<a href="./articles_get.php?id=' . $v['id'] . '">网页阅读</a>
                 <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt">txt阅读</a>
+                <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt&amp;isDownload=1">txt下载</a>
                 </p>'
-            . '<p>' . mb_substr($v['content'], 0, 100, 'utf-8') . '……</p>'
+            . '<p>' . htmlspecialchars(mb_substr($v['content'], 0, 100, 'utf-8')) . '……</p>'
             . '</div>';
 }
 ?>

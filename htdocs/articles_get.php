@@ -1,10 +1,22 @@
 <?php
+/**
+ * 显示一篇文章。网页、txt多种展现形式。
+ */
+
+require_once __DIR__ . '/../src/common.php';
 $input = $_GET;
+$output = array();
+$output['http']['contentType'] = isset($input['contentType']) ? $input['contentType'] : 'text/html';
+if(isset($input['isDownload'])) {
+    $output['http']['contentDisposition'] = 'attachment; filename=notice.txt';
+}
+
 if(!isset($input['id']) || empty($input['id'])) {
-    $notice = '出错了：缺少参数';
-    $backUri = './index.php';
-    require __DIR__ . '/../res/notice.html';
-    exit;
+    $output['data']['notice'] = '出错了：缺少参数';
+    $output['data']['txt'] = $output['data']['notice'];
+    $output['data']['backUri'] = './index.php';
+    $output['layout'] = 'notice';
+    output($output);
 }
 
 require_once __DIR__ . '/../src/db.php';
@@ -15,26 +27,20 @@ $stmt = $db->query($sql);
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
 $r = $stmt->fetchAll();
 
-//todo 这里出错时显示了html。如果是txt模式时，怎么显示呢？
 if(empty($r)) {
-    $notice = '出错了：查无此文';
-    $backUri = './index.php';
-    require __DIR__ . '/../res/notice.html';
-    exit;
+    $output['data']['notice'] = '出错了：查无此文';
+    $output['data']['txt'] = $output['data']['notice'];
+    $output['data']['backUri'] = './index.php';
+    $output['layout'] = 'notice';
+    output($output);
 }
 
 $article = $r[0];
-$contentType = isset($input['contentType']) ? $input['contentType'] : 'text/html';
-switch($contentType) {
-    case 'text/plain' :
-    case 'txt' :
-        //文本
-        header('Content-Type: text/plain; charset=utf-8');
-        echo '《' . $article['title'] . '》作者：' . $article['author'] . "\n";
-        echo $article['content'] . "\n";
-        break;
-    default :
-        require __DIR__ . '/../res/articles_get.html';
-        exit;
+$output['data']['article'] = $article;
+$output['data']['txt'] = '《' . $article['title'] . '》作者：' . $article['author'] . "\n" . $article['content'] . "\n";
+if(isset($input['isDownload'])) {
+    $output['http']['contentDisposition'] = 'attachment; filename=' . $article['id'] . '.txt';
 }
+$output['layout'] = 'articles_get';
+output($output);
 ?>
