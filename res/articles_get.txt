@@ -1,0 +1,2 @@
+<?='《' . $d['article']['title'] . '》作者：' . $d['article']['author'] . "\n"?>
+<?=$d['article']['content'] . "\n"?>

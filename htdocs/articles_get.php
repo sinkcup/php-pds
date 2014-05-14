@@ -13,7 +13,6 @@ if(isset($input['isDownload'])) {
 
 if(!isset($input['id']) || empty($input['id'])) {
     $output['data']['notice'] = '出错了：缺少参数';
-    $output['data']['txt'] = $output['data']['notice'];
     $output['data']['backUri'] = './index.php';
     $output['layout'] = 'notice';
     output($output);
@@ -29,7 +28,6 @@ $r = $stmt->fetchAll();
 
 if(empty($r)) {
     $output['data']['notice'] = '出错了：查无此文';
-    $output['data']['txt'] = $output['data']['notice'];
     $output['data']['backUri'] = './index.php';
     $output['layout'] = 'notice';
     output($output);
@@ -37,7 +35,6 @@ if(empty($r)) {
 
 $article = $r[0];
 $output['data']['article'] = $article;
-$output['data']['txt'] = '《' . $article['title'] . '》作者：' . $article['author'] . "\n" . $article['content'] . "\n";
 if(isset($input['isDownload'])) {
     $output['http']['contentDisposition'] = 'attachment; filename=' . $article['id'] . '.txt';
 }
