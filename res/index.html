@@ -15,7 +15,10 @@ foreach($d['articles'] as $v) {
             . '<p>《' . htmlspecialchars($v['title']) . '》作者：' . htmlspecialchars($v['author'])
             . '<a href="./articles_get.php?id=' . $v['id'] . '">网页阅读</a>
                 <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt">txt阅读</a>
-                <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt&amp;isDownload=1">txt下载</a>
+                txt下载：
+                <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt&amp;isDownload=1&amp;eol=unix">Unix（Android、Ubuntu、新OS X）</a>
+                <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt&amp;isDownload=1&amp;eol=dos">Windows</a>
+                <a href="./articles_get.php?id=' . $v['id'] . '&amp;contentType=txt&amp;isDownload=1&amp;eol=mac_os">老Mac OS</a>
                 </p>'
             . '<p>' . htmlspecialchars(mb_substr($v['content'], 0, 100, 'utf-8')) . '……</p>'
             . '</div>';

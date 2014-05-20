@@ -1,2 +1,2 @@
-<?='《' . $d['article']['title'] . '》作者：' . $d['article']['author'] . "\n"?>
-<?=$d['article']['content'] . "\n"?>
+<?='《' . $d['article']['title'] . '》作者：' . $d['article']['author'] . $output['client']['eol']?>
+<?=rtrim(str_replace("\n", $output['client']['eol'], $d['article']['content'])) . (($output['client']['eof']) ? $output['client']['eol'] : '')?>

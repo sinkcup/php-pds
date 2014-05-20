@@ -1,1 +1,1 @@
-<?=$d['notice'] . "\n"?>
+<?=rtrim(str_replace("\n", $output['client']['eol'], $d['notice'])) . (($output['client']['eof']) ? $output['client']['eol'] : '')?>

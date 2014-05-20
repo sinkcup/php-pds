@@ -47,35 +47,16 @@ PHP项目目录规划（PHP Project Directory Structure）
         <td>Content-Disposition</td>
         <td></td>
     </tr>
+    <tr>
+        <td>Form自动\r\n</td>
+        <td>登录：Session</td>
+        <td></td>
+        <td>必须\r\n</td>
+        <td>EOL、EOF</td>
+    </tr>
 </table>
 
 ##已解决的问题
-
-* 文章不存在时显示的“查无此文”是html网页，txt模式时应该显示txt啊，如何实现呢？
-
-    面向过程编程（POP），使用output函数统一输出即可。
-
-* 如何弹出下载？
-
-    使用Content-Disposition即可。
-
-* 在内容中输入HTML代码会出现什么情况？
-
-    “网页阅读”弹出了js警告，跳转到了别的网站。只要可以随便写js，那就可以做任何事，可以悄悄的发送用户数据，这就是“XSS攻击”。说明这些代码在HTML网页中显示是危险的，需要用htmlspecialchars转义后再显示。而“txt阅读”没问题，在数据库中也无需处理。切记：数据库别处理HTML，那是网页的事。
-
-###XSS实验：txt正常，无需转义
-
-![XSS实验txt正常](http://com-163-sinkcup-img-agc.qiniudn.com/xss_txt.png)
-
-###XSS实验：HTML如果不转义，就会被攻击
-
-![XSS实验HTML危险](http://com-163-sinkcup-img-agc.qiniudn.com/xss_html.png)
-
-###XSS实验：HTML转义了，就安全了
-
-![XSS实验HTML转义](http://com-163-sinkcup-img-agc.qiniudn.com/xss_fixed.png)
-
-##待解决的问题
 
 * 如何注册、登录、只允许登录的人发表文章？
 
@@ -83,14 +64,14 @@ PHP项目目录规划（PHP Project Directory Structure）
 
 * txt模式也应该直接展示$output['data']，不该出现$output['data']['txt']这种冗余的数据。1种数据，多种展示，这样才规范，怎么实现？
 
-    且听下回分解。
+    模板有多种，html有模板，txt也可以有模板。
 
 * 下载的txt，在Windows系统里用记事本打开怎么每段之间没换行？而用高级编辑器（Notepad++、EmEditor）打开没问题，手机也没问题。
 
+    各个OS的换行符EOL（end of line）不一样，EOF也不一样，所以程序处理即可。爱折腾电脑的人可能知道，如果不知道这些计算机常识，请自行学习并折腾：http://zh.wikipedia.org/wiki/%E6%8F%9B%E8%A1%8C
+
+##待解决的问题
+
+* Session与cookie有什么区别？
+
     且听下回分解。
-
-* 复制下载链接，改成一个不存在的id，比如asdf，提示文章不存在，但仍然弹出了下载，怎么办？
-
-    这需要系统学习HTTP协议，先自行学习，且听很久以后分解。
-
-![txt实验：不存在](http://com-163-sinkcup-img-agc.qiniudn.com/txt_not_exist.png)

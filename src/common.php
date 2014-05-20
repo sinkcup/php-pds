@@ -1,9 +1,18 @@
 <?php
+$output = array(
+    'http' => array(
+        'contentType' => 'text/html',
+    ),
+    'data' => array(),
+    'layout' => 'notice',
+    'client' => array(
+        'eol' => "\n",
+        'eof' => true,
+    ),
+);
+
 function output($output)
 {
-    if(!isset($output['http']['contentType'])) {
-        $output['http']['contentType'] = 'text/html';
-    }
     if(isset($output['http']['contentDisposition'])) {
         header('Content-Disposition: ' . $output['http']['contentDisposition']);
     }
